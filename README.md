@@ -2,7 +2,7 @@
 This package is designed for classic compartmental or physiologically-based pharmacokinetic models. 
 These types of models are most frequently described by systems of ordinary differential equations ODEs. This package
 takes a matrix-based approach by finding the eigenvalue/eigenvector solution to a linear system of ODEs.
-Matrix manipulation is more computationally fast, making it ideal for model fitting/parameter estimation.
+Matrix manipulation is computationally faster, making it ideal for model fitting/parameter estimation.
 
 Structure:
 It is designed to take an initial condition matrix (single column vector of initial concentrations) 
