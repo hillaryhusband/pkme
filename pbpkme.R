@@ -64,7 +64,7 @@ pbpkme <- function(minute, h, rate_coeff, init_condition, pars, number_of_doses,
   mu
 
   # initialize matrices
-  x_matrix_save <- vector()
+  conc_v_time <- vector()
   u_matrix <- matrix(0, nrow = matrix_size, ncol = 1)
   g_vector <- matrix(0, nrow = matrix_size, ncol = 1)
   u_prime_matrix <- matrix()
