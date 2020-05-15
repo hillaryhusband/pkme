@@ -7,11 +7,6 @@ install_github("hillaryhusband/pbpkme")
 ############
 library(pbpkme)
 
-# Pharmacokinetics of Remifentanil: three-compartmental modeling approach, Cascone et al., Translational Medicine, 2013, 7(4), 18-22
-# example describes 3 compartment model
-# dCp/dt = - CL1*C1 + k21*V2*C2 + k31*V3*C3 - (k12+k13+k10)*C1)*V1 + dose) / V1
-# dC2/dt = (k12 *C1*V1 - k21*C2*V2 - CL2*C2) / V2
-# dC3/dt = (k13*C1*V1 - k31*C3*V3 - CL3*C3) / V3
 
 #parameters
 k10 <- 0.172    # min^-1
@@ -66,56 +61,57 @@ initial_condition_x[2,1] = 0 #C2
 initial_condition_x[3,1] = 0 #C3
 
 initial_condition_x
-
-
-pred_time <- c(1.10080446,
-               2.0084653157,
-               2.9121645872,
-               3.972341131,
-               5.0325176749,
-               6.0921990207,
-               7.0186774013,
-               8.0793491432,
-               9.9340390974,
-               11.9224272149,
-               14.9742106634,
-               19.8858836453,
-               25.0634673598,
-               29.9803399209,
-               39.8138374443,
-               59.8863837631)
-pred_conc <- c(70.9108628188,
-               19.7896272624,
-               4.4337123319,
-               3.660451177,
-               3.0220505563,
-               2.4274174178,
-               1.9230709498,
-               1.6318745996,
-               1.1275187146,
-               0.8118522503,
-               0.5769069087,
-               0.3779003773,
-               0.2475758807,
-               0.2163643909,
-               0.1629965866,
-               0.1340392725)
-
-pred_data <- data.frame(pred_time, pred_conc)
+#
+#
+# pred_time <- c(1.10080446,
+#                2.0084653157,
+#                2.9121645872,
+#                3.972341131,
+#                5.0325176749,
+#                6.0921990207,
+#                7.0186774013,
+#                8.0793491432,
+#                9.9340390974,
+#                11.9224272149,
+#                14.9742106634,
+#                19.8858836453,
+#                25.0634673598,
+#                29.9803399209,
+#                39.8138374443,
+#                59.8863837631)
+# pred_conc <- c(70.9108628188,
+#                19.7896272624,
+#                4.4337123319,
+#                3.660451177,
+#                3.0220505563,
+#                2.4274174178,
+#                1.9230709498,
+#                1.6318745996,
+#                1.1275187146,
+#                0.8118522503,
+#                0.5769069087,
+#                0.3779003773,
+#                0.2475758807,
+#                0.2163643909,
+#                0.1629965866,
+#                0.1340392725)
+#
+# pred_data <- data.frame(pred_time, pred_conc)
 
 
 tic()
 model <- pbpkme(60, 0.01, p_matrix, initial_condition_x, parameters, 1, dose_amt, begin, end)
 toc()
-model
 
-time <- seq(from = 0, to = 60, by = 0.05)
+time <- seq(from = 0, to = 100, by = 0.05)
 Cp <- model[1,]
-Cp_data <- data.frame(time,Cp)
-Cp_data <- Cp_data[-1,]
 
-pl1 <- ggplot(data = Cp_data, aes(x = time, y=Cp)) + geom_line() + scale_y_log10() + annotation_logticks(sides = "l")
-pl2 <- pl1 + geom_point(data = pred_data, aes(x = pred_time, y = pred_conc, colour = "obs")) +
-      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-      ggtitle("Concentration of Remifentinil", subtitle =  "for 5 microgram/kg bolus dose") + xlab("Time (minutes)") +  ylab("Concentration - ng/mL")
-pl2
+plot(log(Cp))
+# Cp_data <- data.frame(time,Cp)
+# Cp_data <- Cp_data[-1,]
+#
+# pl1 <- ggplot(data = Cp_data, aes(x = time, y=Cp)) + geom_line() + scale_y_log10() + annotation_logticks(sides = "l")
+# pl2 <- pl1 + geom_point(data = pred_data, aes(x = pred_time, y = pred_conc, colour = "obs")) +
+#       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+#       ggtitle("Concentration of Remifentinil", subtitle =  "for 5 microgram/kg bolus dose") + xlab("Time (minutes)") +  ylab("Concentration - ng/mL")
+# pl2
