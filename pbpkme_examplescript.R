@@ -7,6 +7,9 @@ install_github("hillaryhusband/pbpkme")
 ############
 library(pbpkme)
 
+working.directory <- ("C:/Users/HH/Dropbox/Research - Hillary")
+data1 <- read_excel(file.path(working.directory, "DataIndex.xlsx"), "3cptex2")
+data1 <- as.data.frame(data1[,1:2])
 
 #parameters
 k10 <- 0.172    # min^-1
@@ -36,15 +39,22 @@ parameters <- data.frame(k10 = 0.172, k12 = 0.373, k13 = 0.0367, k21 = 0.103, k3
 # as matrix
 p_matrix <- matrix(0, nrow = 3, ncol = 3)
 
- p_matrix[1,1] = -((k10 + k12 + k13)*V1 + CL1) / V1
- p_matrix[1,2] = (k21*V2) / V1
- p_matrix[1,3] = (k31*V3) / V1
- p_matrix[2,1] = (k12*V1) / V2
- p_matrix[2,2] = - (k21*V2 + CL2) / V2
- p_matrix[3,1] = (k13*V1) / V3
- p_matrix[3,3] = - (k31*V3 + CL3) / V3
+ # p_matrix[1,1] = -((k10 + k12 + k13)*V1 + CL1) / V1
+ # p_matrix[1,2] = (k21*V2) / V1
+ # p_matrix[1,3] = (k31*V3) / V1
+ # p_matrix[2,1] = (k12*V1) / V2
+ # p_matrix[2,2] = - (k21*V2 + CL2) / V2
+ # p_matrix[3,1] = (k13*V1) / V3
+ # p_matrix[3,3] = - (k31*V3 + CL3) / V3
 
-
+p_matrix = matrix(0, nrow=3, ncol=3)
+p_matrix[1,1] = -((CL1/V1) + k12 + k13 + k10)
+p_matrix[1,2] = (k21 * V2) / V1
+p_matrix[1,3] = (k31 * V3) / V1
+p_matrix[2,1] = (k12 * V1) / V2
+p_matrix[2,2] = -((CL2/V2) + k21)
+p_matrix[3,1] = (k13 * V1) / V3
+p_matrix[3,3] = -((CL3/V3) + k31)
 
 p_matrix
 
@@ -52,7 +62,7 @@ p_matrix
 begin <- 0   # min
 end <- 0.5     # min
 dose_number <- 1
-dose_amt <- (5 * body_weight) / V1 #micrograms per kg
+dose_amt <- 30 *body_weight / V1 # 1 * body_weight / V1 #micrograms per kg
 
 # initial conditions - amount of drug in compartment at time 0
 initial_condition_x <- matrix(0, nrow = 3, ncol = 1)
@@ -100,18 +110,23 @@ initial_condition_x
 
 
 tic()
-model <- pbpkme(60, 0.01, p_matrix, initial_condition_x, parameters, 1, dose_amt, begin, end)
+model <- pbpkme(100, 0.05, p_matrix, initial_condition_x, parameters, 1, dose_amt, begin, end)
 toc()
 
-time <- seq(from = 0, to = 100, by = 0.05)
-Cp <- model[1,]
 
-plot(log(Cp))
-# Cp_data <- data.frame(time,Cp)
-# Cp_data <- Cp_data[-1,]
-#
-# pl1 <- ggplot(data = Cp_data, aes(x = time, y=Cp)) + geom_line() + scale_y_log10() + annotation_logticks(sides = "l")
-# pl2 <- pl1 + geom_point(data = pred_data, aes(x = pred_time, y = pred_conc, colour = "obs")) +
-#       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-#       ggtitle("Concentration of Remifentinil", subtitle =  "for 5 microgram/kg bolus dose") + xlab("Time (minutes)") +  ylab("Concentration - ng/mL")
-# pl2
+Cp <- model[1,]
+pred_time <- seq(0,100, by = 0.05)
+pred <- cbind(pred_time,Cp)
+pred<-as.data.frame(pred)
+obs_time <- as.matrix(data1$Minute)
+obs_conc <- as.matrix(data1$microMolar)
+obs <- cbind(obs_time,obs_conc)
+obs <- as.data.frame(obs)
+
+pl1 <- ggplot(data = obs, aes(x=V1, y=V2, colour = "Observed Concentration")) + geom_point(size = 2) +
+   scale_y_log10() + ggtitle("Conc vs Time Curve of Remifentanil", subtitle = "30 microgram/kg bolus") +
+   theme_classic(base_size = 14) + xlab("Time (minutes)") + ylab("Concentration (microMolar)") +
+   theme(axis.text=element_text(size=12), axis.title=element_text(size=14)) +
+   theme(legend.title = element_blank(), legend.position = c(0.7,0.8)) + annotation_logticks(sides = "l")
+pl2 <- pl1 + geom_line(data = pred, aes(x=pred_time, y=Cp, colour = "Model Predictions"), size = 0.8)
+pl2
