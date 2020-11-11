@@ -20,3 +20,7 @@ Dose Vector : where the dose is designated – the nice thing about this functio
 
 
 Also, any first order linear systems produce complex conjugate pairs in the eigenvalues or eigenvectors of the matrix solution. This function handles those complex conjugate pairs automatically.
+
+# Installation Shortcut
+
+devtools::install_git("git://github.com/hillaryhusband/pbpkme.git")
