@@ -14,11 +14,12 @@
 #' @param dose A vector of doses corresponding to the "ith" start and stop time vector
 #' @param start_time A vector of start times for an "i" number of doses
 #' @param stop_time A vector of stop times for an "i" number of doses
+#' @param dose_comp Designate which compartment to place the dose -> default is 1
 #' @return x_matrix_save A matrix of the concentrations in each compartment (rows) versus the time course (columns) for a given step size "h". Each column represents a predicted data point at every "2*h"
 #' @export
 
 
-pbpkme <- function(minute, h, rate_coeff, init_condition, pars, number_of_doses, dose, start_time, stop_time) {
+pbpkme <- function(minute, h, rate_coeff, init_condition, pars, number_of_doses, dose, start_time, stop_time, dose_comp = 1) {
   t_index_max = (minute / h) + 1
   tol_value = 10^-500
   matrix_size = nrow(rate_coeff)
@@ -112,7 +113,7 @@ pbpkme <- function(minute, h, rate_coeff, init_condition, pars, number_of_doses,
   ## function starts here
 
   for (t_index in seq(from = 1, to = t_index_max, by = 1)) {
-    g_vector[1,1] <- injection_rate[t_index]
+    g_vector[dose_comp,1] <- injection_rate[t_index]
 
     u_prime_matrix0 <- t0_inv_fund_matrix %*% g_vector
     u_prime_matrix1 <- t1_inv_fund_matrix %*% g_vector
