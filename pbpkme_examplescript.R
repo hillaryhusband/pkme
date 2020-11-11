@@ -86,18 +86,17 @@ dose_amt <- 30
 
 
 model1 <- pbpkme(minute = tfinal, h = dt, rate_coeff = p_matrix, init_condition = init_cond_matrix,
-<<<<<<< HEAD
                  pars = params, number_of_doses = dose_number, dose = dose_amt, start_time = begin,
                  stop_time = end)
-=======
-                 pars = params, number_of_doses = dose_number, dose = dose_amt, begin = 0, end = 0.5)
->>>>>>> 1d629525fcd376128a7b942d63675901f19bf59a
 
+## create continuous time vector and pull out compartments from final matrix
 time <- seq(from=0, to = 60, by = 0.1)
 conc1 <- model1[1,]
 conc2 <- model1[2,]
 conc3 <- model1[3,]
 
+
+## merge time vector and concentrations for plotting in ggplot
 C1 <- data.frame(time, conc1)
 C2 <- data.frame(time, conc2)
 C3 <- data.frame(time, conc3)
