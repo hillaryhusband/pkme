@@ -1,8 +1,7 @@
 rm(list=ls())
 
-
-source("hillaryhusband/Documents/GitHub/pbpkme")
-## run this chunk once to install package needed to pull 'pbpkme' from Github
+## run this chunk once to install package needed to download 'pbpkme' from Github
+## skip if you've already done this
 install.packages("devtools")
 library(devtools)
 install_github("hillaryhusband/pbpkme")
