@@ -90,7 +90,7 @@ model1 <- pbpkme(minute = tfinal, h = dt, rate_coeff = p_matrix, init_condition 
                  stop_time = end)
 
 ## create continuous time vector and pull out compartments from final matrix
-time <- seq(from=0, to = 60, by = 0.1)
+time <- seq(from=0, to = tfinal, by = dt)
 conc1 <- model1[1,]
 conc2 <- model1[2,]
 conc3 <- model1[3,]
