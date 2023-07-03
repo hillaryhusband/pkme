@@ -1,7 +1,7 @@
 Package: pkme
 Type: Package
 Title: Matrix Exponential ODE solver for PK and PBPK models
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
        person("Hillary R.", "Husband", "", "hillaryhusband@gmail.com", 
        c("aut", "cre"), 
