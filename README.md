@@ -1,4 +1,4 @@
-# pbpkme
+# pkme
 This package is designed for classic compartmental or physiologically-based pharmacokinetic models. These types of models are most frequently described by systems 
 of linear ordinary differential equations ODEs. This package takes a matrix-based approach by finding the eigenvalue/eigenvector solution to a linear system of 
 ODEs. Matrix manipulation is computationally fast in R, making it ideal for model fitting/parameter estimation, particularly for large models. This function most 
