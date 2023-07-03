@@ -5,9 +5,9 @@ Version: 0.2.3
 Authors@R: c(
        person("Hillary R.", "Husband", "", "hillaryhusband@gmail.com", 
        c("aut", "cre"), 
-       role =  c("cph"))
+       person("Hillary R.", "Husband", role =  c("cph"))
        )
-Maintainer: Hillary R. Husband <hillaryhusband@gmail.com>
+Maintainer: Hillary Husband <hillaryhusband@gmail.com>
 Description: Functions in this package can solve ODE systems for PK and PBPK models using matrix manipulations. This function automatically handles real and complex conjugate roots, making it applicable to intricate PBPK models as well as machine learning applications to traditional PK techniques.
 License: GPL
 URL: https://github.com/hillaryhusband/pkme
