@@ -1,7 +1,7 @@
 Package: pkme
 Type: Package
 Title: Matrix Exponential ODE solver for PK and PBPK models
-Version: 0.1.0
+Version: 0.2.0
 Author: Hillary R. Husband <hillaryhusband@gmail.com>
 Maintainer: Hillary R. Husband <hillaryhusband@gmail.com>
 Description: Functions in this package can solve ODE systems for PK and PBPK models using matrix manipulations. This function automatically handles real and complex conjugate roots, making it applicable to intricate PBPK models.
