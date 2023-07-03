@@ -10,7 +10,7 @@ Authors@R: c(
 Maintainer: Hillary R. Husband <hillaryhusband@gmail.com>
 Description: Functions in this package can solve ODE systems for PK and PBPK models using matrix manipulations. This function automatically handles real and complex conjugate roots, making it applicable to intricate PBPK models as well as machine learning applications to traditional PK techniques.
 License: GPL
-URL: https://github.com/hillaryhusband/pkme/
+URL: https://github.com/hillaryhusband/pkme
 BugReports: https://github.com/hillaryhusband/pkme/issues
 Encoding: UTF-8
 LazyData: true
