@@ -2,10 +2,25 @@ Package: pkme
 Type: Package
 Title: Matrix Exponential ODE solver for PK and PBPK models
 Version: 0.2.0
-Author: Hillary R. Husband <hillaryhusband@gmail.com>
+Authors@R: c(
+       person("Hillary R.", "Husband", "", "hillaryhusband@gmail.com", 
+       c("aut", "cre"), 
+       role =  c("cph"))
+       )
 Maintainer: Hillary R. Husband <hillaryhusband@gmail.com>
 Description: Functions in this package can solve ODE systems for PK and PBPK models using matrix manipulations. This function automatically handles real and complex conjugate roots, making it applicable to intricate PBPK models as well as machine learning applications to traditional PK techniques.
 License: GPL
+URL: https://github.com/hillaryhusband/pkme/
+BugReports: https://github.com/hillaryhusband/pkme/issues
 Encoding: UTF-8
 LazyData: true
+Language: en-US
+Imports:
+  pracma (>= 2.4.2)
+  readxl (>= 1.4.2)
+  lattice (>= 0.21.8)
+  tidyverse (>= 2.0.0)
+Suggests:
+  ggplot2
+  ggthemes
 RoxygenNote: 7.2.3
