@@ -16,11 +16,11 @@ Encoding: UTF-8
 LazyData: true
 Language: en-US
 Imports:
-  pracma (>= 2.4.2)
-  readxl (>= 1.4.2)
-  lattice (>= 0.21.8)
+  pracma (>= 2.4.2),
+  readxl (>= 1.4.2),
+  lattice (>= 0.21.8),
   tidyverse (>= 2.0.0)
 Suggests:
-  ggplot2
+  ggplot2,
   ggthemes
 RoxygenNote: 7.2.3
