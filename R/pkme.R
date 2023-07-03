@@ -15,6 +15,16 @@
 #' @param start_time A vector of start times for an "i" number of doses
 #' @param stop_time A vector of stop times for an "i" number of doses
 #' @param dose_comp Designate which compartment to place the dose -> default is 1
+#' @examples
+#' # Simple one-compartment PK model:
+#' dt = 0.5
+#' pmat = matrix(0, nrow=1, ncol=1)
+#' pmat[1,1] = -k10
+#' init = matrix(0, nrow=1, ncol=1)
+#' pkme(minute = 10, h = dt, rate_coeff = pmat, init_condition = init,
+#'             pars = c(CL = 2.08, V = 7.88, k10 = CL/V), number_of_doses = 1,
+#'             dose = 30, start_time = 0, stop_time = dt)
+#'             #(for bolus, set length of infusion equal to 'dt'/time step)
 #' @return x_matrix_save A matrix of the concentrations in each compartment (rows) versus the time course (columns) for a given step size "h". Each column represents a predicted data point at every "2*h"
 #' @export
 
