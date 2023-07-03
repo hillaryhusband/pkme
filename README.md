@@ -23,4 +23,4 @@ Also, any first order linear systems produce complex conjugate pairs in the eige
 
 # Installation Shortcut
 
-devtools::install_git("git://github.com/hillaryhusband/pbpkme.git")
+devtools::install_git("git://github.com/hillaryhusband/pkme.git")
