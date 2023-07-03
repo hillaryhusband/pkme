@@ -1,4 +1,4 @@
-#' Solve PBPK model in matrix form
+#' Solve PK or PBPK model in matrix form
 #'
 #' Takes in initial condition matrix (single column vector of initial concentrations) and a rate
 #' coefficient matrix (flow/volume), dose profile (number of doses, start and stop time of each dose)
@@ -19,7 +19,7 @@
 #' @export
 
 
-pbpkme <- function(minute, h, rate_coeff, init_condition, pars, number_of_doses, dose, start_time, stop_time, dose_comp = 1) {
+pkme <- function(minute, h, rate_coeff, init_condition, pars, number_of_doses, dose, start_time, stop_time, dose_comp = 1) {
   t_index_max = (minute / h) + 1
   tol_value = 10^-500
   matrix_size = nrow(rate_coeff)
