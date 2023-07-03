@@ -6,7 +6,7 @@ install.packages("devtools")
 # library(devtools)
 # install_github("hillaryhusband/pkme")
 ############
-library(pkme)
+#library(pkme)
 library(pracma)
 library(readxl)
 library(lattice)
