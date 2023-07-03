@@ -75,7 +75,7 @@ dose_number <- 1
 dose_amt <- 30
 
 
-model1 <- pkme(minute = tfinal, h = dt, rate_coeff = p_matrix, init_condition = init_cond_matrix,
+model1 <- pkme::pkme(minute = tfinal, h = dt, rate_coeff = p_matrix, init_condition = init_cond_matrix,
                  pars = params, number_of_doses = dose_number, dose = dose_amt, start_time = begin,
                  stop_time = end)
 

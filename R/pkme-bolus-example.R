@@ -34,7 +34,7 @@ doseamt <- 30
 
 # Solve system:
 
-model1 <- pkme(minute = tfinal,
+model1 <- pkme::pkme(minute = tfinal,
                h = dt,
                rate_coeff = pmat,
                init_condition = init,
