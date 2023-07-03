@@ -19,7 +19,8 @@ Imports:
   pracma (>= 2.4.2),
   readxl (>= 1.4.2),
   lattice (>= 0.21.8),
-  tidyverse (>= 2.0.0)
+  tidyverse (>= 2.0.0),
+  usethis (>= 2.2.1)
 Suggests:
   ggplot2,
   ggthemes
